@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link style="text/css" rel="stylesheet" href="css/doctor.css">
+  <title>Doctor Dashboard</title>
+</head>
+
+<body>
+  <div class="header">
+    <h1 id="docId">
+      <%= user.id%>
+    </h1>
+
+    <a href="/logout"><button>Logout</button></a>
+  </div>
+
+  <div class="content">
+    <div class="patientSearch" id="patientSearcher">
+      <h2>Search Patient</h2>
+      <label for="health_card_number">Health Card Number:</label>
+      <input type="text" id="health_card_number" name="health_card_number" required>
+      <button id="patientSearch" type="submit">Search</button>
+    </div>
+
+    <div id="form" style="display: none;">
+      <h2>New Visit</h2>
+      <form onsubmit="return false;" id="visitForm">
+        <label for="patient_name">Patient Name:</label>
+        <input type="text" id="patient_name" name="patient_name" required>
+        <br><br>
+        <label for="visit_date">Visit Date:</label>
+        <input type="date" id="visit_date" name="visit_date" required>
+        <br><br>
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes" maxlength="255"></textarea>
+        <br><br>
+        <label for="exam">Exam:</label>
+        <input type="text" id="exam" name="exam" maxlength="255">
+        <br><br>
+        <label for="medicine_name">Medicine Name:</label>
+        <input type="text" id="medicine_name" name="medicine_name" maxlength="255">
+        <br><br>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity">
+        <br><br>
+        <label for="dosage">Dosage:</label>
+        <textarea id="dosage" name="dosage" maxlength="255"></textarea>
+        <br><br>
+        <label for="refillable">Refillable:</label>
+        <input type="checkbox" id="refillable" name="refillable" value="1">
+
+        <br><br>
+        <button type="submit">Save Visit</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    let docId = '<%= user.id%>';
+  </script>
+
+  <script src="js/doctor.js"></script>
+</body>
+
+</html>
