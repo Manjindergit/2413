@@ -1,15 +1,155 @@
+/* Staff Portal Styles */
+
+/* Head Container */
+.head-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+}
+
+.button-container{
+  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.head-container h1 {
+  margin: 0;
+}
+
+.logout-button {
+  background-color: #fff;
+  color: #333;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+/* Buttons */
+button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+/* Tables */
 table {
-    border-collapse: collapse;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem;
+}
+
+th {
+  background-color: #333;
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Form */
+form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: none;
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #555;
+}
+
+/* Report Form */
+#reportForm {
+  margin-top: 2rem;
+}
+
+#reportForm select {
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-right: 1rem;
+}
+
+#month-field,
+#year-field {
+  margin-top: 1rem;
+}
+
+/* Report Section */
+#reportSection {
+  margin-top: 2rem;
+}
+
+#reportSection h2,
+#reportSection h3 {
+  margin-top: 2rem;
+}
+
+/* Create Doctor Form */
+#createDoc {
+  margin-top: 2rem;
+  margin-left: 2vw;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc; 
+}
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+  form {
     width: 100%;
   }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
+}

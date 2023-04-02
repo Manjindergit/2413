@@ -1,11 +1,88 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>My View</title>
-  </head>
-  <body>
-     <a href="/logout"><button style="height: 20px;">Button</button></a>a>
-    <h1><%= user.name%></h1>
-    <h1><%= user.email%></h1>
-  </body>
+
+<head>
+  <title>Patient</title>
+  <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body>
+  <h1>Welcome to Patient Portal</h1>
+
+  <button id="doctor">Doctor Profile</button>
+  <button id="labExam">Lab Exam Results</button>
+  <button id="prescription">Prescription</button>
+
+
+  <button id="editProfile">Edit Profile</button>
+  <a href="/logout">
+    <button>Logout</button>
+  </a>
+
+  <table id="allPatientTable" style="display: none;">
+    <thead>
+      <tr>
+        <th>Patient ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Health Card Number</th>
+      </tr>
+    </thead>
+    <tbody id="patientVisitTableBody">
+    </tbody>
+  </table>
+
+  <table id="docTable" style="display: none;">
+    <thead>
+      <tr>
+        <th>Doctor ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Speciality</th>
+        
+      </tr>
+    </thead>
+    <tbody id="docTableBody">
+    </tbody>
+  </table>
+
+  <table id="labTable" style="display: none;">
+    <thead>
+      <tr>
+        <th>Patient ID</th>
+        <th>Ordered By</th>
+        <th>Exam Name</th>
+        <th>Result</th>
+        <th>Normal Range</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody id="labTableBody">
+    </tbody>
+  </table>
+
+  <table id="presTable" style="display: none;">
+    <thead>
+      <tr>
+        <th>Visit ID</th>
+        <th>Medicine Name</th>
+        <th>Quantity</th>
+        <th>Dose</th>
+        <th>Refill</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody id="presTableBody">
+    </tbody>
+  </table>
+
+  <script>
+    let patientID = '<%= user.id%>';
+  </script>
+  <script src="js/patient.js"></script>
+</body>
+
 </html>

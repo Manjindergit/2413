@@ -18,17 +18,69 @@ function loadData(fil) {
 }
 
 document.getElementById("loadPatient").addEventListener("click", async () => {
+  hideAll()
   await loadData(false);
 });
 
 document
   .getElementById("loadInactivePatient")
   .addEventListener("click", async () => {
+    hideAll()
     loadData(true);
   });
 
+function displayReports(medicineArr, visitArr) {
+  document.getElementById("reportSection").style.display = "block";
+  const doctorVisitTable = document.getElementById("doctorVisitTableBody");
+  doctorVisitTable.textContent = "";
+
+  const patientVisitTable = document.getElementById("patientVisitTableBody");
+  patientVisitTable.textContent = "";
+
+  const medicineTable = document.getElementById("medicineTableBody");
+  medicineTable.textContent = "";
+
+  const patients = visitArr
+  .filter((obj) => obj.ownerType === "patient")
+  .map(({ ownerId, totalNumberOfVisits }) => ({ ownerId, totalNumberOfVisits }));
+
+
+  const doctors = visitArr
+  .filter((obj) => obj.ownerType === "doctor")
+  .map(({ ownerId, totalNumberOfVisits }) => ({ ownerId, totalNumberOfVisits }));
+
+
+
+
+createTable(doctorVisitTable, doctors);
+createTable(patientVisitTable, patients);
+createTable(medicineTable, medicineArr);
+
+}
+
+function createTable(table, arr) {
+  for (let i = 0; i < arr.length; i++) {
+    const row = document.createElement('tr');
+    for (const prop in arr[i]) {
+      const cell = document.createElement('td');
+      cell.textContent = arr[i][prop];
+      row.appendChild(cell);
+    }
+    table.appendChild(row);
+  }
+}
+
+function hideAll(){
+  document.getElementById("reportForm").style.display = "none";
+document.getElementById("reportSection").style.display = "none";
+document.getElementById("allPatientTable").style.display = "none";
+document.getElementById("createDoc").style.display = "none";
+
+}
+
+
 function populateTable(patients, showInactiveOnly) {
-  console.log(patients);
+  hideAll();
   document.getElementById("allPatientTable").style.display = "block";
   const patientTableBody = document.getElementById("patient-table-body");
   patientTableBody.textContent = ""; // clear previous table rows
@@ -139,6 +191,16 @@ function populateTable(patients, showInactiveOnly) {
 }
 
 document.getElementById("createDoctor").addEventListener("click", () => {
+  hideAll();
+  document.getElementById("createDoc").style.display = "block";
+});
+
+document.getElementById("form").addEventListener("submit", function (event) {
+  event.preventDefault(); // prevent the default form submission
+  createDoctor(); // call the "create" function
+});
+
+function createDoctor() {
   const doctor = {
     username: document.getElementById("username").value,
     name: document.getElementById("name").value,
@@ -148,8 +210,6 @@ document.getElementById("createDoctor").addEventListener("click", () => {
     password: document.getElementById("password").value,
     speciality: document.getElementById("speciality").value,
   };
-
-  console.log(doctor);
 
   fetch("/api/register", {
     method: "POST",
@@ -161,6 +221,100 @@ document.getElementById("createDoctor").addEventListener("click", () => {
     .then((res) => res.json())
     .then((data) => {
       if (data.status === "success") {
+        alert("Doctor Created");
+      } else {
+        alert("Failed to create Doctor Account");
+        console.log("noot created");
+      }
+    });
+}
+
+function showFields() {
+  var reportType = document.getElementById("report-type").value;
+  if (reportType == "monthly") {
+    document.getElementById("month-field").style.display = "block";
+    document.getElementById("year-field").style.display = "none";
+  } else if (reportType == "annual") {
+    document.getElementById("month-field").style.display = "none";
+    document.getElementById("year-field").style.display = "block";
+  }
+}
+
+document.getElementById("createReport").addEventListener("click", () => {
+  hideAll();
+  document.getElementById("reportForm").style.display = "block";
+  document.getElementById("generateReportBtn").style.display = "block";
+  document.getElementById("viewReportBtn").style.display = "none";
+});
+
+document.getElementById("generateReportBtn").addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const reportType = document.getElementById("report-type").value;
+  const month = document.getElementById("month").value;
+  const year = document.getElementById("year").value;
+
+  const date = reportType == "monthly" ? month : year;
+
+  const report = {
+    reportType: reportType,
+    date: date,
+  };
+
+  fetch("/api/generateReport", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(report),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.status === "success") {
+        console.log("success");
+        alert("Report Generated");
+      } else if (data.status === "unsuccessful") {
+        console.log("error");
+        alert("Report Not Generated");
+      } else {
+        console.log("noot created");
+      }
+    });
+
+  console.log(report);
+});
+
+document.getElementById("viewReport").addEventListener("click", () => {
+  //hideAll();
+  document.getElementById("reportForm").style.display = "block";
+  document.getElementById("generateReportBtn").style.display = "none";
+  document.getElementById("viewReportBtn").style.display = "block";
+});
+
+document.getElementById("viewReportBtn").addEventListener("click", (e) => {
+  e.preventDefault();
+  const reportType = document.getElementById("report-type").value;
+  const month = document.getElementById("month").value;
+  const year = document.getElementById("year").value;
+
+  const date = reportType == "monthly" ? month : year;
+
+  const report = {
+    reportType: reportType,
+    date: date,
+  };
+
+  fetch("/api/fetchReport", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(report),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.status === "success") {
+        displayReports(data.topPrescribedMedicines, data.totalVisits);
         console.log("success");
       } else {
         console.log("noot created");

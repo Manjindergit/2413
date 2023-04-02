@@ -23,7 +23,16 @@ form.addEventListener("submit", (event) => {
         if(data.userType === "staff"){
           window.location.href = "/staff";
         }
-      } else {
+      }
+      if(data.status === "error"){
+        alert("Your account has not been aproved yet");
+      }
+
+      if(data.status === "errorP"){
+        alert("Invalid Username or password");
+      }
+
+      else {
         console.log(data);
       }
     });

@@ -21,8 +21,8 @@ const visit = async (req, res) => {
 
         const visitID = result.insertId; // Retrieve the last inserted ID using insertId property
         await db.query(
-          "INSERT INTO prescriptions (visit_id, medicine_name, quantity, dose, refillable) VALUES (?, ?, ?, ?,?)",
-          [visitID, medicine_name, quantity, dosage, refillable]
+          "INSERT INTO prescriptions (visit_id, medicine_name, quantity, dose, refillable, date)  VALUES (?, ?, ?, ?,?,?)",
+          [visitID, medicine_name, quantity, dosage, refillable, date]
         );
 
         await db.query(
