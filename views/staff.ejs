@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link style="text/css" rel="stylesheet" href="css/staff.css">
+    <title>Staff</title>
+</head>
+
+<body>
+    <div class="head-container">
+        <div class="head-left">
+          <h1>Welcome to Staff Portal</h1>
+        </div>
+        <div class="head-right">
+          <a href="/logout" class="logout-button">Logout</a>
+        </div>
+      </div>
+      
+      <div class="button-container">
+        <button id="loadPatient">Edit Patients</button>
+        <button id="loadInactivePatient">Activate Patient Account</button>
+        <a href="/register"><button>Create New Patient</button></a>
+        <button id="createDoctor">Create Doctor</button>
+        <button id="createReport">Create Report</button>
+        <button id="viewReport">View Report</button>
+      </div>
+
+    </div>
+      
+    <form id="reportForm" style="display: none;">
+        <select id="report-type" onchange="showFields()">
+            <option value="monthly">Monthly</option>
+            <option value="annual">Annual</option>
+        </select>
+
+        <div id="month-field">
+            <label for="month">Month:</label>
+            <select id="month">
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+
+            </select>
+        </div>
+
+        <div id="year-field" style="display: none;">
+            <label for="year">Year:</label>
+            <select id="year">
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <!-- Add more options for other years -->
+            </select>
+        </div>
+        <br><br>
+        <button type="submit" id="generateReportBtn">Generate Report</button>
+        <button type="submit" id="viewReportBtn" style="display: none;">View Report</button>
+    </form>
+
+    <div id="reportSection" style="display: none;">
+        <h2>Monthly and Annual Report</h2>
+        
+        <br>
+        <h3>Total Patients Visit for Each Doctor</h3>
+        <table id="doctorVisitTable">
+            <thead>
+                <tr>
+                    <th>Doctor ID</th>
+                    <th>Total Patients Visited</th>
+                </tr>
+            </thead>
+            <tbody id="doctorVisitTableBody">
+            </tbody>
+        </table>
+        <br>
+        <h3>Every Patient's Visit Summary</h3>
+        <table id="patientVisitTable">
+            <thead>
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Total Visits</th>
+                </tr>
+            </thead>
+            <tbody id="patientVisitTableBody">
+            </tbody>
+        </table>
+        <br>
+        <h3>Top 3 Prescribed Medicines</h3>
+        <table id="medicineTable">
+            <thead>
+                <tr>
+                    <th>Medicine Name</th>
+                    <th>Total Prescriptions</th>
+                </tr>
+            </thead>
+            <tbody id="medicineTableBody">
+            </tbody>
+        </table>
+    </div>
+
+    <table id="allPatientTable" style="display: none;">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>Health Card Number</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody id="patient-table-body">
+
+    </table>
+
+    <div id="createDoc" style="display: none;">
+    <form id="form" >
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Username" required>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" id="phone_number" name="phone_number"><br><br>
+
+        <label for="speciality">Speciality:</label>
+        <input type="text" id="speciality" name="speciality"><br><br>
+
+        <button type="submit" id="submitBtn">Submit</button>
+
+    </form> </div>
+
+    <script src="js/staff.js"></script>
+</body>
+
+</html>

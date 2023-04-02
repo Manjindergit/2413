@@ -1,0 +1,19 @@
+const db = require("../routes/db-config");
+
+const fetchPres = async (req, res) => {
+  const { id } = req.body;
+
+  let sql = 'SELECT * FROM prescriptions';
+
+  if(id){
+    sql += ` WHERE visit_id IN 
+    (SELECT id FROM visits WHERE patient_id = ${id})`;
+  }
+
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    return res.json({ status: "success", patient: result });
+  });
+};
+
+module.exports = fetchPres;

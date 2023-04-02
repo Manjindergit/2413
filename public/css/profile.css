@@ -1,0 +1,110 @@
+/* Body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    margin-left: 2vw;
+  }
+  
+  /* Header */
+  header {
+    background-color: #3399ff;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  header button {
+    background-color: #fff;
+    color: #3399ff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  header button:hover {
+    background-color: #e6f2ff;
+  }
+  
+  /* Main */
+  main {
+    padding: 20px;
+  }
+  
+  /* Tables */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #3399ff;
+    color: #fff;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Buttons */
+  button {
+    background-color: #3399ff;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #1a75ff;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  /* Logout button */
+  #logoutBtn {
+    background-color: #fff;
+    color: #3399ff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  #logoutBtn:hover {
+    background-color: #e6f2ff;
+  }
+  
+  /* Responsive design */
+  @media screen and (max-width: 768px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    header button {
+      margin: 10px 0 0;
+    }
+  }
+  
